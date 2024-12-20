@@ -1,5 +1,4 @@
 void main() {
-  // Idol cool = new Idol();
   Idol cool = Idol('cool', ['이재훈', '김성수', '유리']);
   print(cool.name);
   print(cool.members);
@@ -7,11 +6,24 @@ void main() {
   cool.Introduce();
   print('-' * 50);
 
-  Idol koyote = Idol('koyote', ['김종민', '신지', '빽가']);
+  Idol koyote = Idol.fromList([
+    'koyote',
+    ['김종민', '신지', '빽가']
+  ]);
   print(koyote.name);
   print(koyote.members);
   koyote.sayHello();
   koyote.Introduce();
+  print('-' * 50);
+
+  Idol blackpink = Idol.setList([
+    ['제니', '로제', '리사', '지수'],
+    '블랙핑크'
+  ]);
+  print(blackpink.name);
+  print(blackpink.members);
+  blackpink.sayHello();
+  blackpink.Introduce();
   print('-' * 50);
 }
 
@@ -20,13 +32,16 @@ class Idol {
   String name;
   List<String> members;
 
-  // 생성자 등장
-  // Idol(String name, List<String> members)
-  //     : this.name = name,
-  //       this.members = members;
-
-  // 위 코드의 축약형
+  // 축약형 생성자
   Idol(this.name, this.members);
+
+  // 이름있는 생성자
+  Idol.fromList(List values)
+      : this.name = values[0],
+        this.members = values[1];
+  Idol.setList(List values)
+      : this.members = values[0],
+        this.name = values[1];
 
   void sayHello() {
     print("안녕하세요. ${name} 입니다.");
